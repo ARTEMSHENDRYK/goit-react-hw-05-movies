@@ -7,7 +7,6 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  console.log(backLinkLocationRef);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {

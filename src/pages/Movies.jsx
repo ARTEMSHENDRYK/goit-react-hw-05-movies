@@ -36,11 +36,8 @@ const Movies = () => {
       setMovies(response);
     }
 
-    if (searchQuery) {
-      fetchSearchMovies();
-    }
-
-  }, [searchQuery]);
+    fetchSearchMovies();
+  }, []);
 
 
   return (
