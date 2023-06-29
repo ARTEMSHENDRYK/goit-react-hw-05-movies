@@ -8,11 +8,6 @@ const Movies = () => {
   const searchQuery = searchParams.get("query") ?? "";
   const location = useLocation();
 
-  const fetchSearchMovies = async () => {
-    const response = await getSearchMovies(searchQuery);
-    setMovies(response);
-  }
-
   const handleInputChange = (evt) => {
     evt.target.value.toLowerCase()
       ? setSearchParams({ query: evt.target.value.toLowerCase() })
@@ -25,16 +20,27 @@ const Movies = () => {
     if (!searchQuery.trim()) {
       alert("Some search query needed.");
       return;
-    }  
+    }
+    
+    const fetchSearchMovies = async () => {
+      const response = await getSearchMovies(searchQuery);
+      setMovies(response);
+    }
 
     fetchSearchMovies();
   }
 
   useEffect(() => {
+    const fetchSearchMovies = async () => {
+      const response = await getSearchMovies(searchQuery);
+      setMovies(response);
+    }
+
     if (searchQuery) {
       fetchSearchMovies();
     }
-  }, []);
+
+  }, [searchQuery]);
 
 
   return (
