@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getTrending } from "api/TheMovieDB";
+import css from "./Home.module.css";
 
 const Home = () => {
   const [trending, setTranding] = useState([]);
@@ -15,20 +16,19 @@ const Home = () => {
   }, []);
   
   return (
-    <>
-      <h1>Trending today</h1>
+    <section className={css.container}>
+      <h1 className={css.title}>Trending today</h1>
+      <ul  className={css.list}>
       {trending.map(({ id, title }) => {
         return (
-          <Link key={id} to={`/movies/${id}`}>
-            <ul>
-              <li>
+            <Link className={css.link} key={id} to={`/movies/${id}`}>
+              <li className={css.item}>
                 {title}
               </li>
-            </ul>
-          </Link>
-        )
-      })}
-    </>
+            </Link>
+        )})}
+      </ul>  
+    </section>
   )
 }
 

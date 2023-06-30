@@ -1,6 +1,8 @@
-const { getMovieReviews } = require("api/TheMovieDB");
-const { useState, useEffect } = require("react");
-const { useParams } = require("react-router-dom");
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getMovieReviews } from "api/TheMovieDB";
+import css from "./Reviews.module.css";
+
 
 const Reviews = () => {
   const [reviews, setReviews] = useState();
@@ -23,14 +25,14 @@ const Reviews = () => {
         <ul>
           {reviews.map(({ id, author, content }) => {
             return (
-              <li key={id}>
-                <p>AUTHOR: {author}</p>
+              <li className={css.item} key={id}>
+                <p className={css.text}>AUTHOR: {author}</p>
                 <p>{content}</p>
               </li>
             )})}
         </ul>
         :
-        <p>We don't have any reviews of this movie</p>
+        <p className={css.text}>We don't have any reviews of this movie</p>
       }
     </>
   )
